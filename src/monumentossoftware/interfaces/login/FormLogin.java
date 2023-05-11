@@ -6,6 +6,8 @@ package monumentossoftware.interfaces.login;
 import java.awt.Color;
 import javax.swing.ImageIcon;
 import java.awt.Image;
+import javax.swing.JOptionPane;
+import monumentossoftware.objetcs.SQLite;
 import monumentossoftware.objetcs.Utils;
 
 public class FormLogin extends javax.swing.JFrame {
@@ -48,6 +50,7 @@ public class FormLogin extends javax.swing.JFrame {
         EmailImage = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
         PanelGradient = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -242,6 +245,14 @@ public class FormLogin extends javax.swing.JFrame {
         jLabel2.setText("Senha");
         jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 220, -1, -1));
 
+        jLabel5.setText("Esqueceu a senha?");
+        jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel5MouseClicked(evt);
+            }
+        });
+        jPanel3.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 380, 120, -1));
+
         javax.swing.GroupLayout PanelGradientLayout = new javax.swing.GroupLayout(PanelGradient);
         PanelGradient.setLayout(PanelGradientLayout);
         PanelGradientLayout.setHorizontalGroup(
@@ -357,6 +368,24 @@ public class FormLogin extends javax.swing.JFrame {
        jLabel10.setBackground(new Color(186,79,84));
     }//GEN-LAST:event_jLabel10MouseExited
 
+    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
+        String email = TextEmail.getText();
+        if(email.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Digite um email!", "Email nulo", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if(!SQLite.emailExists(email)) {
+            JOptionPane.showMessageDialog(null, "Digite um email existente", "Email desconhecido", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        Utils.email = email;
+        Utils.code = Utils.gerarCodigo();
+        FormResetPassword formReset = new FormResetPassword();
+        formReset.setVisible(true);
+        
+        //Enviar email aqui!
+    }//GEN-LAST:event_jLabel5MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -405,6 +434,7 @@ public class FormLogin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;

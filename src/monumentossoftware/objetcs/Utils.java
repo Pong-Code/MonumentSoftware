@@ -10,7 +10,7 @@ import java.awt.Color;
 import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.LinearGradientPaint;
+import java.util.Random;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 
@@ -20,6 +20,9 @@ import javax.swing.JPanel;
  * @author chris
  */
 public class Utils {
+    
+    public static String code = ""; //Onde fica guardado o code!
+    public static String email = ""; //Onde fica guardado o email!
     
     public static boolean isValidEmail(String email) {
     // Define a expressão regular para validar o email
@@ -71,6 +74,22 @@ public class Utils {
         }
     });
     panel.repaint();
+    }
+    
+    
+    
+    
+    
+    //Gerar codigo
+    public static String gerarCodigo() {
+        String letras = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        StringBuilder codigo = new StringBuilder();
+        Random random = new Random();
+        for (int i = 0; i < 5; i++) {
+            int index = random.nextInt(letras.length());
+            codigo.append(letras.charAt(index));
+        }
+        return codigo.toString();
     }
 
 

@@ -102,6 +102,24 @@ public static boolean emailExists(String email) {
     return false;
 }
 
+public static void changeUserPassword(String email, String newPassword) {
+    String sql = "UPDATE Users SET password = ? WHERE email = ?";
+    try (Connection conn = connect();
+            PreparedStatement pstmt = conn.prepareStatement(sql)) {
+        pstmt.setString(1, newPassword);
+        pstmt.setString(2, email);
+        int rowsUpdated = pstmt.executeUpdate();
+        if (rowsUpdated > 0) {
+            System.out.println("Senha do usuário " + email + " atualizada com sucesso!");
+        } else {
+            System.out.println("Não foi possível atualizar a senha do usuário " + email);
+        }
+    } catch (SQLException e) {
+        System.out.println(e.getMessage());
+        System.exit(0);
+    }
+}
+
 
 
 //**************Monumentos**************
