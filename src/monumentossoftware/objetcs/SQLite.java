@@ -52,7 +52,7 @@ public static void createTableUsers() {
 public static void registerUser(String name, String email, String password, String role) {
     try {
         Connection conn = connect();
-        String sql = "INSERT INTO Users(nome, email, password, tipo) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO Users(name, email, password, role) VALUES (?, ?, ?, ?)";
         PreparedStatement pstmt = conn.prepareStatement(sql);
         pstmt.setString(1, name);
         pstmt.setString(2, email);
@@ -89,6 +89,7 @@ public static Users login(String email, String senha) {
 //Verifica se o email já está registrado
 public static boolean emailExists(String email) {
     String sql = "SELECT * FROM Users WHERE email = ?";
+    System.out.println("2 " + email);
     try (Connection conn = connect();
             PreparedStatement pstmt = conn.prepareStatement(sql)) {
         pstmt.setString(1, email);

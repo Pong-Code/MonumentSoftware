@@ -10,9 +10,13 @@ import java.awt.Color;
 import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.util.Map;
 import java.util.Random;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
+import java.util.Properties;
+import javax.mail.*;
+import javax.mail.internet.*;
 
 
 /**
@@ -75,6 +79,67 @@ public class Utils {
     });
     panel.repaint();
     }
+    
+    
+    
+    
+    //Função de enviar email!
+    public static boolean sendRecoveryEmail(String recipientEmail, String recoveryCode) {
+    Properties props = new Properties();
+
+    // Obtém a senha da conta de email de uma variável de ambiente
+    String emailPassword = System.getenv("PASSWORD_HISTORIA");
+
+    // Configura as propriedades do servidor SMTP do Gmail
+    props.put("mail.transport.protocol", "smtp");
+    props.put("mail.smtp.host", "smtp.gmail.com");
+    props.put("mail.smtp.starttls.enable", "true");
+    props.put("mail.smtp.auth", "true");
+    props.put("mail.smtp.port", "587");
+
+    // Cria a sessão de email
+    Session session = Session.getInstance(props,
+        new javax.mail.Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication("historiavivasoftwarept@gmail.com", emailPassword);
+            }
+        });
+
+    try {
+        // Cria a mensagem de email
+        Message message = new MimeMessage(session);
+        message.setFrom(new InternetAddress("historiavivasoftwarept@gmail.com")); // Remetente
+        message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(recipientEmail)); // Destinatário(s)
+        message.setSubject("Recuperação de senha"); // Assunto
+        
+        // Cria o corpo do email com HTML para formatação
+        String htmlContent = "<div style='font-family: Arial, sans-serif;'>" +
+            "<h3 style='color: #3498db;'>Recuperação de senha</h3>" +
+            "<p>Olá,</p>" +
+            "<p>Você solicitou a recuperação da senha da sua conta no nosso sistema. Use o código abaixo para recuperar sua senha:</p>" +
+            "<div style='background-color: #f2f2f2; border: 1px solid #ccc; padding: 10px; font-size: 20px; font-weight: bold; text-align: center;'>" +
+            recoveryCode +
+            "</div>" +
+            "<p>Obrigado por usar o nosso sistema!</p>" +
+            "</div>";
+        
+        // Define o corpo do email como conteúdo HTML
+        message.setContent(htmlContent, "text/html; charset=utf-8");
+
+        // Envia a mensagem criada
+        Transport.send(message);
+
+        System.out.println("Email de recuperação de senha enviado com sucesso para: " + recipientEmail);
+        return true;
+
+    } catch (MessagingException e) {
+        System.err.println("Erro ao enviar email de recuperação de senha para: " + recipientEmail);
+        e.printStackTrace();
+        return false;
+    }
+}
+
+
     
     
     

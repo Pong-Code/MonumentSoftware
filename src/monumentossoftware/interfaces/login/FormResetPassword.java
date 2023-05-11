@@ -198,7 +198,7 @@ public class FormResetPassword extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "As senhas não são iguais", "Senhas diferentes", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        if(code.equals(Utils.code)) {
+        if(!code.equals(Utils.code)) {
             JOptionPane.showMessageDialog(null, "O código inserido está errado!", "Código errado", JOptionPane.ERROR_MESSAGE);
             return;
         }

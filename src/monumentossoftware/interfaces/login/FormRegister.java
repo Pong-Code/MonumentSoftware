@@ -222,6 +222,9 @@ public class FormRegister extends javax.swing.JFrame {
         jLabel10.setText("Register");
         jLabel10.setOpaque(true);
         jLabel10.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel10MouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jLabel10MouseEntered(evt);
             }
@@ -424,7 +427,15 @@ public class FormRegister extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel3MouseClicked
 
     private void jPanel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel7MouseClicked
-    String name = TextName.getText();
+    
+    }//GEN-LAST:event_jPanel7MouseClicked
+
+    private void jLabel3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseExited
+        jLabel3.setBackground(new Color(255,204,102));
+    }//GEN-LAST:event_jLabel3MouseExited
+
+    private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
+        String name = TextName.getText();
     String email = TextEmail.getText();
     char[] password = TextPassword.getPassword();
     char[] confirmpassword = TextConfirmPassword.getPassword();
@@ -453,13 +464,12 @@ public class FormRegister extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, "Esse email já foi registrado!", "Email em uso", JOptionPane.ERROR_MESSAGE);
         return;
     }
-    
     SQLite.registerUser(name, email, new String(password), "visitante");
-    }//GEN-LAST:event_jPanel7MouseClicked
-
-    private void jLabel3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseExited
-        jLabel3.setBackground(new Color(255,204,102));
-    }//GEN-LAST:event_jLabel3MouseExited
+    TextConfirmPassword.setText("");
+    TextEmail.setText("");
+    TextName.setText("");
+    TextPassword.setText("");
+    }//GEN-LAST:event_jLabel10MouseClicked
 
     /**
      * @param args the command line arguments

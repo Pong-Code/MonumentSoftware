@@ -375,15 +375,21 @@ public class FormLogin extends javax.swing.JFrame {
             return;
         }
         if(!SQLite.emailExists(email)) {
+            System.out.println("1 " + email);
             JOptionPane.showMessageDialog(null, "Digite um email existente", "Email desconhecido", JOptionPane.ERROR_MESSAGE);
             return;
         }
         Utils.email = email;
         Utils.code = Utils.gerarCodigo();
+        if(!Utils.sendRecoveryEmail(email, Utils.code)) {
+            Utils.email = "";
+            Utils.code = "";
+            JOptionPane.showMessageDialog(null, "O email está indisponivel, tente recuperar mais tarde!", "Erro interno", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         FormResetPassword formReset = new FormResetPassword();
         formReset.setVisible(true);
         
-        //Enviar email aqui!
     }//GEN-LAST:event_jLabel5MouseClicked
 
     /**
