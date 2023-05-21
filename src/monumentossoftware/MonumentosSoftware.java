@@ -4,6 +4,10 @@
  */
 package monumentossoftware;
 
+import monumentossoftware.objetcs.Mysql;
+
+
+
 /**
  *
  * @author chris
@@ -11,7 +15,7 @@ package monumentossoftware;
 public class MonumentosSoftware {
 
     public static void main(String[] args) {
-        // TODO code application logic here
+        Mysql.createTables();
     }
     
 }

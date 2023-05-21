@@ -1,11 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package monumentossoftware.interfaces.login;
+
 import java.awt.Color;
 import javax.swing.JOptionPane;
-import monumentossoftware.objetcs.SQLite;
+import monumentossoftware.objetcs.Mysql;
 import monumentossoftware.objetcs.Utils;
 import java.util.*;
 
@@ -349,10 +346,7 @@ public class FormRegister extends javax.swing.JFrame {
     }//GEN-LAST:event_TextPasswordFocusLost
 
     private void TextPasswordFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TextPasswordFocusGained
-        if(TextPassword.getText().equals("Senha")) {
-            TextPassword.setText("");
-            TextPassword.setEchoChar('*');
-        }
+
 
     }//GEN-LAST:event_TextPasswordFocusGained
 
@@ -362,9 +356,7 @@ public class FormRegister extends javax.swing.JFrame {
     }//GEN-LAST:event_TextEmailFocusLost
 
     private void TextEmailFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TextEmailFocusGained
-        if(TextEmail.getText().equals("Email")) {
-            TextEmail.setText("");
-        }
+ 
     }//GEN-LAST:event_TextEmailFocusGained
 
     private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
@@ -449,22 +441,13 @@ public class FormRegister extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, "As senhas não são iguais!", "Senhas erradas", JOptionPane.ERROR_MESSAGE);
         return;
     }
-    
-    if(!Utils.isValidEmail(email)) {
-        JOptionPane.showMessageDialog(null, "Por favor, coloque um email válido", "Email inválido", JOptionPane.ERROR_MESSAGE);
-        return;
-    }
-    
-    if(password.length < 5) {
-        JOptionPane.showMessageDialog(null, "Por favor, crie uma senha com pelo menos 5 caracteres", "Senha inválida", JOptionPane.ERROR_MESSAGE);
-        return;
-    }
-    
-    if(SQLite.emailExists(email)) {
+    if(!Utils.isValidPassword(password, confirmpassword)) return;
+   
+    if(Mysql.emailExists(email)) {
         JOptionPane.showMessageDialog(null, "Esse email já foi registrado!", "Email em uso", JOptionPane.ERROR_MESSAGE);
         return;
     }
-    SQLite.registerUser(name, email, new String(password), "visitante");
+    Mysql.insertUser(name, email, String.valueOf(password));
     TextConfirmPassword.setText("");
     TextEmail.setText("");
     TextName.setText("");

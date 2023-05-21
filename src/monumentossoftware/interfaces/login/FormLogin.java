@@ -7,12 +7,17 @@ import java.awt.Color;
 import javax.swing.ImageIcon;
 import java.awt.Image;
 import javax.swing.JOptionPane;
-import monumentossoftware.objetcs.SQLite;
+import monumentossoftware.interfaces.menu.FormMenu;
+import monumentossoftware.objetcs.AsyncUpdater;
+import monumentossoftware.objetcs.Monuments;
+import monumentossoftware.objetcs.Mysql;
 import monumentossoftware.objetcs.Utils;
 
 public class FormLogin extends javax.swing.JFrame {
     public FormLogin() {
         initComponents();
+        Monuments monument = new Monuments();
+        AsyncUpdater.startUpdatingMonuments(monument);
         Utils.createGradientPanel(PanelGradient, new Color(255,204,102), new Color(186,79,84));
         Utils.setImageIcon("/images/icons/monumental-logo.png", LogoImage);
         Utils.setImageIcon("/images/icons/lock-icon.png", LockImage);
@@ -215,6 +220,9 @@ public class FormLogin extends javax.swing.JFrame {
         jLabel10.setText("Login");
         jLabel10.setOpaque(true);
         jLabel10.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel10MouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jLabel10MouseEntered(evt);
             }
@@ -374,7 +382,7 @@ public class FormLogin extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Digite um email!", "Email nulo", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        if(!SQLite.emailExists(email)) {
+        if(!Mysql.emailExists(email)) {
             System.out.println("1 " + email);
             JOptionPane.showMessageDialog(null, "Digite um email existente", "Email desconhecido", JOptionPane.ERROR_MESSAGE);
             return;
@@ -391,6 +399,23 @@ public class FormLogin extends javax.swing.JFrame {
         formReset.setVisible(true);
         
     }//GEN-LAST:event_jLabel5MouseClicked
+
+    private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
+        String email = TextEmail.getText();
+        char[] password = TextPassword.getPassword();
+        if(email.isEmpty() || password.length <= 0) {
+            JOptionPane.showMessageDialog(null, "Preencha todos os campos","Campos vazios", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if(!Mysql.login(email, String.valueOf(password))){
+            JOptionPane.showMessageDialog(null, "Email ou palavra passe incorretos!","Dados incorretos", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        //Sucesso
+        dispose();
+        FormMenu form = new FormMenu();
+        form.show();
+    }//GEN-LAST:event_jLabel10MouseClicked
 
     /**
      * @param args the command line arguments

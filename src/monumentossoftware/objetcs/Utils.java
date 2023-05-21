@@ -10,21 +10,17 @@ import java.awt.Color;
 import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.util.Map;
+import java.util.Arrays;
 import java.util.Random;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 import java.util.Properties;
 import javax.mail.*;
 import javax.mail.internet.*;
+import javax.swing.JOptionPane;
 
 
-/**
- *
- * @author chris
- */
 public class Utils {
-    
     public static String code = ""; //Onde fica guardado o code!
     public static String email = ""; //Onde fica guardado o email!
     
@@ -139,12 +135,19 @@ public class Utils {
     }
 }
 
+    //Verificar se a senha é válida
+    public static boolean isValidPassword(char[] password, char[] confirmpassword) {
+        if(!Arrays.equals(password, confirmpassword)){
+            JOptionPane.showMessageDialog(null, "As senhas não são iguais!", "Senhas erradas", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        if(password.length < 5) {
+        JOptionPane.showMessageDialog(null, "Por favor, crie uma senha com pelo menos 5 caracteres", "Senha inválida", JOptionPane.ERROR_MESSAGE);
+        return false;
+    }
+  return true; 
+  }
 
-    
-    
-    
-    
-    
     //Gerar codigo
     public static String gerarCodigo() {
         String letras = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -156,6 +159,7 @@ public class Utils {
         }
         return codigo.toString();
     }
+    
 
 
 
