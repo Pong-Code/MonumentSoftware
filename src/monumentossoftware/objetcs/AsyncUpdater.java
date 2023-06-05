@@ -6,20 +6,20 @@ import java.util.concurrent.TimeUnit;
 
 
 public class AsyncUpdater {
+    public static Monuments monuments = new Monuments();
     private static ScheduledExecutorService executor;
 
-    //Task assincrona que vai executar de 5 em 5 minutos
+    //Task assincrona que vai executar de 5 em 5 minutos para atualizar o cache dos monumentos
     public static void startUpdatingMonuments(Monuments monuments) {
         System.out.println("Iniciado com sucesso o task!");
         executor = Executors.newSingleThreadScheduledExecutor();
         executor.scheduleAtFixedRate(() -> {
             if(Monuments.monumentMap.isEmpty()) {
-                Mysql.fetchMonumentsFromDatabase();
-            }else{
-                updateMonumentsInDb();
+                Mysql.fetchMonumentsFromDatabase(monuments);
+            }else {
+                updateMonumentsInList();
             }
-            updateMonumentsInList();
-            updateDbWithNewMonuments();
+            
             System.out.println("Atualizou, passou 5m?");
         }, 0, 5, TimeUnit.MINUTES);
     }
@@ -30,31 +30,23 @@ public class AsyncUpdater {
         }
     }
     
-    //Elimina na db os monumentos que já não existem
-    private static void updateMonumentsInDb() {
+    
+    public static void updateMonumentsInList() {
+        //Atualizar a lista com todos os ids de monumentos da db
         Mysql.loadMonumentsFromDb();
         for (int id : Mysql.databaseMonumentIds) {
+            //Verificar se tem algum ID que não exista
             if (!Monuments.monumentMap.containsKey(id)) {
-                Mysql.deleteMonumentFromDb(id);
+                //Se encontrar algum, adiciona 
+                Mysql.addMonumentInListById(id, monuments);
             }
         }
     }
     
-    private static void updateMonumentsInList() {
-        for (int id : Mysql.databaseMonumentIds) {
-            if (!Monuments.monumentMap.containsKey(id)) {
-                Mysql.addMonumentInListById(id);
-            }
-        }
-    }
     
-    private static void updateDbWithNewMonuments() {
-        for (int id : Monuments.monumentMap.keySet()) {
-            if (!Mysql.databaseMonumentIds.contains(id)) {
-                Monuments.Monument monument = Monuments.monumentMap.get(id);
-                Mysql.insertMonument(monument.getName(), monument.getDesc(), monument.getCountry(), monument.getState(), monument.getYear(), monument.getLatitude(), monument.getLongitude(), monument.getOwner());
-            }
-        }
+    // Envia o email de recuperação de senha de forma assíncrona
+    public static void sendRecoveryEmailAsync(String recipientEmail, String recoveryCode) {
+        Runnable task = () -> Utils.sendRecoveryEmail(recipientEmail, recoveryCode);
+        executor.execute(task);
     }
-    
 }

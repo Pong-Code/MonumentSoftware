@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package monumentossoftware.interfaces.login;
 import java.awt.Color;
 import javax.swing.ImageIcon;
@@ -21,8 +17,7 @@ public class FormLogin extends javax.swing.JFrame {
         Utils.createGradientPanel(PanelGradient, new Color(255,204,102), new Color(186,79,84));
         Utils.setImageIcon("/images/icons/monumental-logo.png", LogoImage);
         Utils.setImageIcon("/images/icons/lock-icon.png", LockImage);
-        Utils.setImageIcon("/images/icons/email-icon.png", EmailImage);
-        TextPassword.setEchoChar('\0');
+        Utils.setImageIcon("/images/icons/email-icon.png", EmailImage);   
     }
     
     public void image() {
@@ -79,14 +74,6 @@ public class FormLogin extends javax.swing.JFrame {
         jPanel6.setBackground(new java.awt.Color(255, 204, 102));
         jPanel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
         jPanel6.setOpaque(false);
-        jPanel6.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jPanel6MouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jPanel6MouseExited(evt);
-            }
-        });
 
         jLabel3.setBackground(new java.awt.Color(255, 204, 102));
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -156,26 +143,10 @@ public class FormLogin extends javax.swing.JFrame {
 
         TextEmail.setBackground(new java.awt.Color(186, 79, 84));
         TextEmail.setBorder(null);
-        TextEmail.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                TextEmailFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                TextEmailFocusLost(evt);
-            }
-        });
         jPanel3.add(TextEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 160, 215, 22));
 
         TextPassword.setBackground(new java.awt.Color(186, 79, 84));
         TextPassword.setBorder(null);
-        TextPassword.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                TextPasswordFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                TextPasswordFocusLost(evt);
-            }
-        });
         jPanel3.add(TextPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 240, 215, 22));
 
         jSeparator1.setBackground(new java.awt.Color(255, 255, 255));
@@ -204,14 +175,6 @@ public class FormLogin extends javax.swing.JFrame {
         jPanel7.setBackground(new java.awt.Color(186, 79, 84));
         jPanel7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
         jPanel7.setOpaque(false);
-        jPanel7.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jPanel7MouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jPanel7MouseExited(evt);
-            }
-        });
 
         jLabel10.setBackground(new java.awt.Color(186, 79, 84));
         jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -305,35 +268,6 @@ public class FormLogin extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void TextPasswordFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TextPasswordFocusLost
-        if(TextPassword.getText().isEmpty()) {
-            TextPassword.setEchoChar('\0');
-            TextPassword.setText("Password");
-        }
-
-    }//GEN-LAST:event_TextPasswordFocusLost
-
-    private void TextPasswordFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TextPasswordFocusGained
-        if(TextPassword.getText().equals("Password")) {
-            TextPassword.setText("");
-            TextPassword.setEchoChar('*');
-        }
-
-    }//GEN-LAST:event_TextPasswordFocusGained
-
-    private void TextEmailFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TextEmailFocusLost
-        if(TextEmail.getText().isEmpty()) {
-            TextEmail.setText("Email");
-        }
-
-    }//GEN-LAST:event_TextEmailFocusLost
-
-    private void TextEmailFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TextEmailFocusGained
-        if(TextEmail.getText().equals("Email")) {
-            TextEmail.setText("");
-        }
-    }//GEN-LAST:event_TextEmailFocusGained
-
     private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
         System.exit(0);
     }//GEN-LAST:event_jLabel7MouseClicked
@@ -342,25 +276,9 @@ public class FormLogin extends javax.swing.JFrame {
        jLabel3.setBackground(new Color(186,79,84));
     }//GEN-LAST:event_jLabel3MouseEntered
 
-    private void jPanel6MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel6MouseExited
-
-    }//GEN-LAST:event_jPanel6MouseExited
-
     private void jLabel10MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseEntered
-            jLabel10.setBackground(new Color(255,204,102));
+        jLabel10.setBackground(new Color(255,204,102));
     }//GEN-LAST:event_jLabel10MouseEntered
-
-    private void jPanel7MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel7MouseExited
-      
-    }//GEN-LAST:event_jPanel7MouseExited
-
-    private void jPanel6MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel6MouseEntered
-
-    }//GEN-LAST:event_jPanel6MouseEntered
-
-    private void jPanel7MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel7MouseEntered
-
-    }//GEN-LAST:event_jPanel7MouseEntered
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
         dispose();
@@ -387,14 +305,10 @@ public class FormLogin extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Digite um email existente", "Email desconhecido", JOptionPane.ERROR_MESSAGE);
             return;
         }
+        //Sistema de recuperar senha ativado
         Utils.email = email;
         Utils.code = Utils.gerarCodigo();
-        if(!Utils.sendRecoveryEmail(email, Utils.code)) {
-            Utils.email = "";
-            Utils.code = "";
-            JOptionPane.showMessageDialog(null, "O email está indisponivel, tente recuperar mais tarde!", "Erro interno", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
+        AsyncUpdater.sendRecoveryEmailAsync(email, Utils.code);
         FormResetPassword formReset = new FormResetPassword();
         formReset.setVisible(true);
         
@@ -411,17 +325,13 @@ public class FormLogin extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Email ou palavra passe incorretos!","Dados incorretos", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        //Sucesso
+        //Logado com sucesso
         dispose();
         FormMenu form = new FormMenu();
         form.show();
     }//GEN-LAST:event_jLabel10MouseClicked
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 

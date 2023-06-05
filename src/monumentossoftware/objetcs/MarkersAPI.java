@@ -27,6 +27,18 @@ public class MarkersAPI extends DefaultWaypoint {
     public int getId() {
         return id;
     }
+    public static void DelMarker(int id) {
+        System.out.println("Você antes tinha " + markers.size());
+        for (int i = 0; i < markers.size(); i++) {
+        MarkersAPI marker = markers.get(i);
+        if (marker.getId() == id) {
+            markers.remove(i);
+            break; // Parar o loop após remover o marcador
+            }
+        }
+        System.out.println("Agora você tem " + markers.size());
+        
+    }
 
     //Obter a posição do marcador
     public GeoPosition getPosition() {
@@ -39,7 +51,8 @@ public class MarkersAPI extends DefaultWaypoint {
     
     
     private static void addMonumentsToMarkers() {
-    for (Monuments.Monument monument : Monuments.monumentMap.values()) {
+        markers.clear();
+    for (Monument monument : Monuments.monumentMap.values()) {
         int id = monument.getId();
         double latitude = monument.getLatitude();
         double longitude = monument.getLongitude();
@@ -66,28 +79,13 @@ public class MarkersAPI extends DefaultWaypoint {
 
     return null; // Não encontrou nenhum marcador com coordenadas correspondentes
 }
-    
-    
-    
-    public void addMarker(GeoPosition position, int id) {
-    MarkersAPI marker = new MarkersAPI(position, id);
-    markers.add(marker);
 
-    Set<MarkersAPI> markersSet = new HashSet<>(markers);
-
-    WaypointPainter<MarkersAPI> waypointPainter = new WaypointPainter<>();
-    waypointPainter.setWaypoints(markersSet);
-
-    MapsAPI.view.setOverlayPainter(waypointPainter);
-    MapsAPI.view.repaint();
-}
-
+//Atualiza os marcadores dos monumentos no mapa
 public static void loadMarkers(JXMapViewer view) {
-    if (markers.isEmpty()) {
-        addMonumentsToMarkers();
-    }
+    addMonumentsToMarkers(); // Atualiza a lista de marcadores
+
     Set<MarkersAPI> markersSet = new HashSet<>(markers);
-    
+
     WaypointPainter<MarkersAPI> waypointPainter = new WaypointPainter<>();
     waypointPainter.setWaypoints(markersSet);
 

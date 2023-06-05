@@ -4,7 +4,6 @@ import java.awt.Color;
 import javax.swing.JOptionPane;
 import monumentossoftware.objetcs.Mysql;
 import monumentossoftware.objetcs.Utils;
-import java.util.*;
 
 public class FormRegister extends javax.swing.JFrame {
     public FormRegister() {
@@ -15,8 +14,6 @@ public class FormRegister extends javax.swing.JFrame {
         Utils.setImageIcon("/images/icons/email-icon.png", EmailImage);
         Utils.setImageIcon("/images/icons/user-icon.png", NameImage);
         Utils.setImageIcon("/images/icons/lock-icon.png", LockImage1);
-        TextPassword.setEchoChar('\0');
-        TextConfirmPassword.setEchoChar('\0');
     }
 
     @SuppressWarnings("unchecked")
@@ -74,14 +71,6 @@ public class FormRegister extends javax.swing.JFrame {
         jPanel6.setBackground(new java.awt.Color(255, 204, 102));
         jPanel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
         jPanel6.setOpaque(false);
-        jPanel6.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jPanel6MouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jPanel6MouseExited(evt);
-            }
-        });
 
         jLabel3.setBackground(new java.awt.Color(255, 204, 102));
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -160,26 +149,10 @@ public class FormRegister extends javax.swing.JFrame {
 
         TextEmail.setBackground(new java.awt.Color(186, 79, 84));
         TextEmail.setBorder(null);
-        TextEmail.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                TextEmailFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                TextEmailFocusLost(evt);
-            }
-        });
         jPanel3.add(TextEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 160, 215, 22));
 
         TextPassword.setBackground(new java.awt.Color(186, 79, 84));
         TextPassword.setBorder(null);
-        TextPassword.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                TextPasswordFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                TextPasswordFocusLost(evt);
-            }
-        });
         jPanel3.add(TextPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 220, 215, 22));
 
         jSeparator1.setBackground(new java.awt.Color(255, 255, 255));
@@ -200,17 +173,6 @@ public class FormRegister extends javax.swing.JFrame {
         jPanel7.setBackground(new java.awt.Color(186, 79, 84));
         jPanel7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
         jPanel7.setOpaque(false);
-        jPanel7.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jPanel7MouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jPanel7MouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jPanel7MouseExited(evt);
-            }
-        });
 
         jLabel10.setBackground(new java.awt.Color(186, 79, 84));
         jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -248,14 +210,6 @@ public class FormRegister extends javax.swing.JFrame {
 
         TextName.setBackground(new java.awt.Color(186, 79, 84));
         TextName.setBorder(null);
-        TextName.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                TextNameFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                TextNameFocusLost(evt);
-            }
-        });
         jPanel3.add(TextName, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 90, 215, 22));
 
         jSeparator3.setBackground(new java.awt.Color(255, 255, 255));
@@ -266,14 +220,6 @@ public class FormRegister extends javax.swing.JFrame {
 
         TextConfirmPassword.setBackground(new java.awt.Color(186, 79, 84));
         TextConfirmPassword.setBorder(null);
-        TextConfirmPassword.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                TextConfirmPasswordFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                TextConfirmPasswordFocusLost(evt);
-            }
-        });
         jPanel3.add(TextConfirmPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 290, 215, 22));
 
         jSeparator4.setBackground(new java.awt.Color(255, 255, 255));
@@ -340,25 +286,6 @@ public class FormRegister extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void TextPasswordFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TextPasswordFocusLost
-
-
-    }//GEN-LAST:event_TextPasswordFocusLost
-
-    private void TextPasswordFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TextPasswordFocusGained
-
-
-    }//GEN-LAST:event_TextPasswordFocusGained
-
-    private void TextEmailFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TextEmailFocusLost
-
-
-    }//GEN-LAST:event_TextEmailFocusLost
-
-    private void TextEmailFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TextEmailFocusGained
- 
-    }//GEN-LAST:event_TextEmailFocusGained
-
     private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
         System.exit(0);
     }//GEN-LAST:event_jLabel7MouseClicked
@@ -367,96 +294,54 @@ public class FormRegister extends javax.swing.JFrame {
         jLabel3.setBackground(new Color(186,79,84));
     }//GEN-LAST:event_jLabel3MouseEntered
 
-    private void jPanel6MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel6MouseExited
-
-    }//GEN-LAST:event_jPanel6MouseExited
-
     private void jLabel10MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseEntered
-            jLabel10.setBackground(new Color(255,204,102));
+        jLabel10.setBackground(new Color(255,204,102));
     }//GEN-LAST:event_jLabel10MouseEntered
-
-    private void jPanel7MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel7MouseExited
-        jPanel7.setBackground(new Color(186,79,84));
-    }//GEN-LAST:event_jPanel7MouseExited
-
-    private void jPanel6MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel6MouseEntered
-
-    }//GEN-LAST:event_jPanel6MouseEntered
-
-    private void jPanel7MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel7MouseEntered
-        jPanel7.setBackground(Color.BLUE);
-    }//GEN-LAST:event_jPanel7MouseEntered
 
     private void jLabel10MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseExited
         jLabel10.setBackground(new Color(186,79,84));
     }//GEN-LAST:event_jLabel10MouseExited
 
-    private void TextNameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TextNameFocusGained
-        if(TextName.getText().equals("Nome")) {
-            TextName.setText("");
-        }
-    }//GEN-LAST:event_TextNameFocusGained
-
-    private void TextNameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TextNameFocusLost
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TextNameFocusLost
-
-    private void TextConfirmPasswordFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TextConfirmPasswordFocusGained
-        if(TextConfirmPassword.getText().equals("Confirmar Senha")) {
-            TextConfirmPassword.setText("");
-            TextConfirmPassword.setEchoChar('*');
-        }
-    }//GEN-LAST:event_TextConfirmPasswordFocusGained
-
-    private void TextConfirmPasswordFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TextConfirmPasswordFocusLost
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TextConfirmPasswordFocusLost
-
+    //Ir para a form login
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
         dispose();
         FormLogin formlogin = new FormLogin();
         formlogin.setVisible(true);
     }//GEN-LAST:event_jLabel3MouseClicked
 
-    private void jPanel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel7MouseClicked
-    
-    }//GEN-LAST:event_jPanel7MouseClicked
-
     private void jLabel3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseExited
         jLabel3.setBackground(new Color(255,204,102));
     }//GEN-LAST:event_jLabel3MouseExited
 
+    //Verificar login
     private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
         String name = TextName.getText();
-    String email = TextEmail.getText();
-    char[] password = TextPassword.getPassword();
-    char[] confirmpassword = TextConfirmPassword.getPassword();
-
-    if(name.isEmpty() || email.isEmpty() || password.length == 0 || confirmpassword.length == 0) {
-        JOptionPane.showMessageDialog(null, "Por favor, preencha todos os dados", "Campos Vazios", JOptionPane.ERROR_MESSAGE);
-        return;
-    }
-    
-    if (!Arrays.equals(password, confirmpassword)) {
-        JOptionPane.showMessageDialog(null, "As senhas não são iguais!", "Senhas erradas", JOptionPane.ERROR_MESSAGE);
-        return;
-    }
-    if(!Utils.isValidPassword(password, confirmpassword)) return;
-   
-    if(Mysql.emailExists(email)) {
-        JOptionPane.showMessageDialog(null, "Esse email já foi registrado!", "Email em uso", JOptionPane.ERROR_MESSAGE);
-        return;
-    }
-    Mysql.insertUser(name, email, String.valueOf(password));
-    TextConfirmPassword.setText("");
-    TextEmail.setText("");
-    TextName.setText("");
-    TextPassword.setText("");
+        String email = TextEmail.getText();
+        char[] password = TextPassword.getPassword();
+        char[] confirmpassword = TextConfirmPassword.getPassword();
+        //Verificar se algum campo é vazio
+        if(name.isEmpty() || email.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Por favor, preencha todos os dados", "Campos Vazios", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        //Verificar se a senha é valida
+        if(!Utils.isValidPassword(password, confirmpassword)) return;
+        //Verificar se já existe alguém com esse email registrado
+        if(Mysql.emailExists(email)) {
+            JOptionPane.showMessageDialog(null, "Esse email já foi registrado!", "Email em uso", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        //Sucesso, registrar o novo utilizador e limpar os campos!
+        Mysql.insertUser(name, email, String.valueOf(password));
+        TextConfirmPassword.setText("");
+        TextEmail.setText("");
+        TextName.setText("");
+        TextPassword.setText("");
+        JOptionPane.showMessageDialog(null, "YEAH! Agora você é um membro!", "Registrado com sucesso!", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_jLabel10MouseClicked
 
-    /**
-     * @param args the command line arguments
-     */
+    
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
