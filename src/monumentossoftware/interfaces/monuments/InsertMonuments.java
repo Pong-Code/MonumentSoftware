@@ -20,11 +20,14 @@ public class InsertMonuments extends javax.swing.JFrame {
     
     public boolean changephoto = false;
     public File selectfilemain;
+    ImageIcon defaultIconmonument = new ImageIcon(ViewMonument.class.getResource("/images/icons/monumental-logo.png"));
 
     public static GeoPosition loc;
 
     public InsertMonuments() {
         initComponents();
+        Image imagemRedimensionada = defaultIconmonument.getImage().getScaledInstance(LabelPhotoMonument.getWidth(), LabelPhotoMonument.getHeight(), Image.SCALE_SMOOTH);
+        LabelPhotoMonument.setIcon(new ImageIcon(imagemRedimensionada));
     }
 
 
@@ -46,10 +49,12 @@ public class InsertMonuments extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         TextLocal = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        LabelPhoto = new javax.swing.JLabel();
+        LabelPhotoMonument = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         jLabel1.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         jLabel1.setText("Inserir Monumento");
@@ -81,6 +86,13 @@ public class InsertMonuments extends javax.swing.JFrame {
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
+            }
+        });
+
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/cross-icon.png"))); // NOI18N
+        jLabel6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel6MouseClicked(evt);
             }
         });
 
@@ -117,26 +129,29 @@ public class InsertMonuments extends javax.swing.JFrame {
                             .addComponent(TextLocal, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(46, 46, 46))
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(143, 143, 143)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(101, 101, 101)
-                        .addComponent(jLabel1))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(143, 143, 143)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(12, 12, 12)
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(LabelPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(12, 12, 12)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(LabelPhotoMonument, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(101, 101, 101)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel6))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel1))
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(43, 43, 43)
-                .addComponent(LabelPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(LabelPhotoMonument, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
@@ -172,7 +187,7 @@ public class InsertMonuments extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -238,8 +253,8 @@ public class InsertMonuments extends javax.swing.JFrame {
                         String extension = fileName.substring(fileName.lastIndexOf('.') + 1);
                         if (extension.equalsIgnoreCase("jpg") || extension.equalsIgnoreCase("jpeg") || extension.equalsIgnoreCase("png")) {
                             ImageIcon imageIcon = new ImageIcon(selectedFile.getAbsolutePath());
-                                Image imagemRedimensionada = imageIcon.getImage().getScaledInstance(LabelPhoto.getWidth(), LabelPhoto.getHeight(), Image.SCALE_SMOOTH);
-                                LabelPhoto.setIcon(new ImageIcon(imagemRedimensionada));
+                                Image imagemRedimensionada = imageIcon.getImage().getScaledInstance(LabelPhotoMonument.getWidth(), LabelPhotoMonument.getHeight(), Image.SCALE_SMOOTH);
+                                LabelPhotoMonument.setIcon(new ImageIcon(imagemRedimensionada));
                                 if(!changephoto) changephoto = true;
                                 selectfilemain = selectedFile;
                         } else {
@@ -250,6 +265,10 @@ public class InsertMonuments extends javax.swing.JFrame {
                     
                 }
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
+        dispose();
+    }//GEN-LAST:event_jLabel6MouseClicked
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -286,7 +305,7 @@ public class InsertMonuments extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> ComboEstado;
     private javax.swing.JLabel LabelDesc;
-    private javax.swing.JLabel LabelPhoto;
+    private javax.swing.JLabel LabelPhotoMonument;
     private javax.swing.JTextField TextAno;
     private javax.swing.JTextArea TextDesc;
     private javax.swing.JTextField TextLocal;
@@ -298,6 +317,7 @@ public class InsertMonuments extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables

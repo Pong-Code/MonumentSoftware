@@ -55,7 +55,7 @@ public class User {
     }
     
     public String getCreatedAtAsString() {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy - HH:mm");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         return dateFormat.format(createdAt);
     }
     

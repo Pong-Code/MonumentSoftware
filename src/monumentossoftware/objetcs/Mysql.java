@@ -211,7 +211,7 @@ public static void changeUserPassword(String email, String newPassword) {
     String sql = "UPDATE Users SET password = ? WHERE email = ?";
     try (Connection conn = connect();
             PreparedStatement pstmt = conn.prepareStatement(sql)) {
-        pstmt.setString(1, newPassword);
+        pstmt.setString(1, Utils.encriptarPassword(newPassword));
         pstmt.setString(2, email);
         int rowsUpdated = pstmt.executeUpdate();
         if (rowsUpdated > 0) {
@@ -515,8 +515,9 @@ public static void createClassificationsTable() {
 
 
 public static void createTables() {
-    createTableUsers();
-    createTableMonumentos();
-    createClassificationsTable();
+        createTableUsers();
+        createTableMonumentos();
+        createClassificationsTable();
+    
 }
 }

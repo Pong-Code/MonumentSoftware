@@ -21,7 +21,9 @@ import javax.swing.JOptionPane;
 
 public class Utils {
     public static String code = ""; // Onde fica guardado o code!
-    public static String email = ""; // Onde fica guardado o email!
+    private static String email = "historiavivasoftwarept@gmail.com";
+    public static String emailuser = ""; // Onde fica guardado o email para onde vai ser enviado
+    private static String emailpassword = "xvathklhjofocuot"; // Onde fica guardado o email!
 
     // Valida a entrada de emails
     public static boolean isValidEmail(String email) {
@@ -80,7 +82,6 @@ public class Utils {
         Properties props = new Properties();
 
         // Obtém a senha da conta de email de uma variável de ambiente
-        String emailPassword = System.getenv("PASSWORD_HISTORIA");
 
         // Configura as propriedades do servidor SMTP do Gmail
         props.put("mail.transport.protocol", "smtp");
@@ -94,14 +95,14 @@ public class Utils {
             new javax.mail.Authenticator() {
                 @Override
                 protected PasswordAuthentication getPasswordAuthentication() {
-                    return new PasswordAuthentication("historiavivasoftwarept@gmail.com", emailPassword);
+                    return new PasswordAuthentication(email, emailpassword);
                 }
             });
 
         try {
             // Cria a mensagem de email
             Message message = new MimeMessage(session);
-            message.setFrom(new InternetAddress("historiavivasoftwarept@gmail.com")); // Remetente
+            message.setFrom(new InternetAddress(email)); // Remetente
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(recipientEmail)); // Destinatário(s)
             message.setSubject("Recuperação de senha"); // Assunto
 

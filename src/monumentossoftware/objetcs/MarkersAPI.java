@@ -76,7 +76,6 @@ public class MarkersAPI extends DefaultWaypoint {
             return marker.getId(); // As coordenadas correspondem à posição do marcador
         }
     }
-
     return null; // Não encontrou nenhum marcador com coordenadas correspondentes
 }
 

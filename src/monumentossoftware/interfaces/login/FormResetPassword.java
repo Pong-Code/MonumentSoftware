@@ -28,7 +28,7 @@ public class FormResetPassword extends javax.swing.JFrame {
         if (remainingSeconds == 0) {
             // Encerrar a Thread e fechar o formulário
             Utils.code = "";
-            Utils.email = "";
+            Utils.emailuser = "";
             JOptionPane.showMessageDialog(null, "A contagem acabou, por favor tente novamente", "Tempo expirado!", JOptionPane.ERROR_MESSAGE);
             this.cancel();
             dispose();
@@ -192,7 +192,7 @@ public class FormResetPassword extends javax.swing.JFrame {
         }
         //Sucesso! Alterar a senha do utilizador
         JOptionPane.showMessageDialog(null, "Senha alterada com sucesso!", "Sucesso!", JOptionPane.INFORMATION_MESSAGE);
-        Mysql.changeUserPassword(Utils.email, String.valueOf(password));
+        Mysql.changeUserPassword(Utils.emailuser, String.valueOf(password));
         dispose();
     }//GEN-LAST:event_ButtonConfirmActionPerformed
 

@@ -28,11 +28,17 @@ import monumentossoftware.objetcs.Monument;
 
 public class FormMenu extends javax.swing.JFrame {
     ImageIcon defaultIcon = new ImageIcon(ImagesAPI.class.getResource("/images/icons/userdefault.png"));
+    //Verificar se a foto foi alterada
     boolean changePhoto = false;
+    //Guardar a foto alterada
     public static File selectfilemain;
+    //Verificar se a foto foi eliminada, del=0 não foi, del=1 foi elimianada
     int del = 0;
+    //Guardar o id do User logado para apresentar as informações
     int id = User.user.getId();
+    //Map para guardar os ids dos Monumentos pesquisados, a cada pesquisa o Map é resetado para novos valores
     Map<Integer, Integer> idMap = new HashMap<>();
+    //Instancia da classe MapsAPI para representar o mapa interativo
     MapsAPI maps = new MapsAPI();
     
     public FormMenu() {
@@ -75,13 +81,17 @@ public class FormMenu extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         TableMonuments = new javax.swing.JTable();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
         jPanel13 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        PanelMap.setBackground(new java.awt.Color(51, 51, 55));
+        PanelMap.setBackground(new java.awt.Color(255, 255, 255));
+        PanelMap.setForeground(new java.awt.Color(153, 153, 0));
 
         FormInicio.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
@@ -115,7 +125,6 @@ public class FormMenu extends javax.swing.JFrame {
 
         jLabel5.setText("Cargo");
 
-        ComboBoxCargo.setEditable(true);
         ComboBoxCargo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Visitante", "Explorador" }));
 
         LabelData.setText("DataCreated");
@@ -201,7 +210,7 @@ public class FormMenu extends javax.swing.JFrame {
                         .addGroup(FormInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
                             .addComponent(ComboBoxCargo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 306, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 318, Short.MAX_VALUE)
                 .addGroup(FormInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ButtonSave)
                     .addComponent(LabelData))
@@ -300,15 +309,44 @@ public class FormMenu extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(TableMonuments);
 
+        jLabel7.setText("Visualizar Monumento: LeftClick");
+
+        jLabel8.setText("Adicionar Monumento: RightClick");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel8))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                .addComponent(jLabel8))
+        );
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 578, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 540, Short.MAX_VALUE)
+                .addGap(0, 0, 0)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(89, 89, 89))
         );
 
         javax.swing.GroupLayout PanelSearchAllLayout = new javax.swing.GroupLayout(PanelSearchAll);
@@ -343,13 +381,13 @@ public class FormMenu extends javax.swing.JFrame {
         );
         FormShowMappLayout.setVerticalGroup(
             FormShowMappLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(FormShowMappLayout.createSequentialGroup()
-                .addComponent(PanelSearchAll, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FormShowMappLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(PanelMapInteract, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
+            .addGroup(FormShowMappLayout.createSequentialGroup()
+                .addComponent(PanelSearchAll, javax.swing.GroupLayout.PREFERRED_SIZE, 717, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         PanelMap.addTab("Mapa", FormShowMapp);
@@ -421,44 +459,31 @@ public class FormMenu extends javax.swing.JFrame {
 
     private void FormShowMappComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_FormShowMappComponentShown
     maps.loadMap();
-    
     // Configurar o layout da FormShowMapp como BorderLayout
     FormShowMapp.setLayout(new BorderLayout());
-    
     // Calcular a largura do PanelMapInteract como 80% da largura da FormShowMapp
     int panelWidth = (int) (FormShowMapp.getWidth() * 0.8);
     int panelHeight = FormShowMapp.getHeight();
-    
     // Criar o PanelMapInteract com o layout BorderLayout
     PanelMapInteract.setLayout(new BorderLayout());
-    
     // Definir a largura preferida do PanelMapInteract
     PanelMapInteract.setPreferredSize(new Dimension(panelWidth, panelHeight));
-    
     // Adicionar o PanelMapInteract à FormShowMapp, na posição oeste (esquerda)
     FormShowMapp.add(PanelMapInteract, BorderLayout.EAST);
-    
     // Adicionar o objeto view do MapsAPI ao PanelMapInteract
     PanelMapInteract.add(maps.view, BorderLayout.CENTER);
-    
     // Criar o PanelSearchAll com o layout BorderLayout
     PanelSearchAll.setLayout(new BorderLayout());
-    
     // Calcular a largura do PanelSearchAll como 20% da largura da FormShowMapp
     int searchPanelWidth = (int) (FormShowMapp.getWidth() * 0.2);
-    
     // Definir a largura preferida do PanelSearchAll
     PanelSearchAll.setPreferredSize(new Dimension(searchPanelWidth, panelHeight));
-    
     // Adicionar o PanelSearchAll à FormShowMapp, na posição leste (direita)
     FormShowMapp.add(PanelSearchAll, BorderLayout.WEST);
-    
     // Criar o PanelButtonSearch e adicionar ao PanelSearchAll
     PanelSearchAll.add(PanelButtonSearch, BorderLayout.NORTH);
-    
     // Criar o PanelListMonument e adicionar ao PanelSearchAll
     PanelSearchAll.add(jPanel2, BorderLayout.CENTER);
-    
     // Redesenhar o FormShowMapp para atualizar o layout
     FormShowMapp.revalidate();
     FormShowMapp.repaint();
@@ -697,9 +722,12 @@ tableModel.fireTableDataChanged();
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables

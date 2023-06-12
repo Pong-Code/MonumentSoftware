@@ -62,9 +62,16 @@ public class MapsAPI extends JPanel {
                         InsertMonuments insertmonument = new InsertMonuments();
                         Point2D clickPoint = e.getPoint();
                         GeoPosition clickPosition = view.convertPointToGeoPosition(clickPoint);
+                        Integer id = MarkersAPI.getMatchingMarkerId(clickPosition.getLatitude(), clickPosition.getLongitude());
+                        if(id != null) {
+                        JOptionPane.showMessageDialog(null, "Já existe um monumento nesse lugar!", "Erro ao adicionar", JOptionPane.ERROR_MESSAGE);
+                        return;
+                        }
                         InsertMonuments.loc = clickPosition;
                         insertmonument.show();
-                        
+                        //Caso nao seja explorador
+                    }else {
+                        JOptionPane.showMessageDialog(null, "Você precisa ser explorador para adicionar monumentos!", "Sem permissão", JOptionPane.ERROR_MESSAGE);
                     }
                 } else if (SwingUtilities.isLeftMouseButton(e)) {
                     Point2D clickPoint = e.getPoint();

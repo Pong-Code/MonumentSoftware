@@ -296,17 +296,19 @@ public class FormLogin extends javax.swing.JFrame {
 
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
         String email = TextEmail.getText();
+        //Verificar se o campo Email é vazio
         if(email.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Digite um email!", "Email nulo", JOptionPane.ERROR_MESSAGE);
             return;
         }
+        //Verificar se existe alguma conta com o email inserido
         if(!Mysql.emailExists(email)) {
             System.out.println("1 " + email);
             JOptionPane.showMessageDialog(null, "Digite um email existente", "Email desconhecido", JOptionPane.ERROR_MESSAGE);
             return;
         }
         //Sistema de recuperar senha ativado
-        Utils.email = email;
+        Utils.emailuser = email;
         Utils.code = Utils.gerarCodigo();
         AsyncUpdater.sendRecoveryEmailAsync(email, Utils.code);
         FormResetPassword formReset = new FormResetPassword();
